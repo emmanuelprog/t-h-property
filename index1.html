@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Azure Villa - Luxury Direct Inquiry</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        /* Custom Parallax Effect */
+        .parallax-bg {
+            /*background-image: url('https://placehold.co/1920x1080/0d9488/ffffff?text=Luxury+Poolside+View');*/
+            background-image: url('./src/img/showcase.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 60vh;
+        }
+        /* Inquiry section uses same parallax image as background */
+        .inquiry-bg {
+            background-image: url('./src/img/showcase.jpg');
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* ensure the section has some vertical space for the background to show */
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        /* On small devices fixed backgrounds can be janky — fall back to scroll */
+        @media (max-width: 640px) {
+           .inquiry-bg { background-attachment: scroll; }
+        }
+        /* Style for the Contact Button to stand out */
+        .contact-button {
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 15px -3px rgba(109, 40, 217, 0.5), 0 4px 6px -2px rgba(109, 40, 217, 0.05);
+        }
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 20px -5px rgba(109, 40, 217, 0.6), 0 10px 10px -5px rgba(109, 40, 217, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- Sticky WhatsApp Button -->
+    <a href="https://wa.me/2348093245906?text=Hello%20Olusina%20Isaac%2C%20I%27m%20interested%20in%20T%26H%20Service%20Apartment%20at%20Westend%20Estate.%20Please%20let%20me%20know%20availability." 
+    target="_blank"
+    class="fixed bottom-6 right-6 z-50 flex items-center bg-[#25D366] hover:bg-[#128C7E] text-white px-4 py-3 rounded-full shadow-2xl transition duration-300 transform hover:scale-105 group"
+    aria-label="Chat with us on WhatsApp">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" class="mr-2">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.937 3.659 1.432 5.631 1.433h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+
+        <span class="font-bold text-sm tracking-wide">CHAT WITH US</span>
+    </a>
+
+    <!--
+    <a href="https://wa.me/123456789?text=Hello%2C%20I%27m%20interested%20in%20The%20Azure%20Villa%20and%20would%20like%20to%20know%20availability." target="_blank"
+        class="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition duration-300 transform hover:scale-105"
+        aria-label="Chat with us on WhatsApp">
+        <! Simple chat icon SVG 
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path d="M12.036 21.832l.844-.067c2.096-.166 4.08-.8 5.76-1.856l.006-.003.882.493 2.052.88-2.148-1.574-.012-.008c.594-.972.936-2.094 1.05-3.234l-.004-.03-.004-.04c.12-.99-.024-1.956-.378-2.856l-.004-.008c-.288-.738-.72-1.428-1.29-2.052-.576-.624-1.284-1.182-2.124-1.632-.84-.45-1.782-.78-2.82-.996l-.008-.002c-1.044-.216-2.124-.228-3.24-.03l-.004.004c-1.128.192-2.184.624-3.156 1.29-.96.666-1.782 1.542-2.478 2.592l-.004.006c-.57.852-1.002 1.83-1.29 2.892l-.004.008c-.198.816-.18 1.632.06 2.454.24 1.14.738 2.214 1.488 3.156l-.006.008c.75.942 1.644 1.74 2.64 2.37l.004.002c.996.63 2.112 1.098 3.324 1.392l.004.002.834.198zm0-19.98c2.658 0 5.148 1.038 7.02 2.91 1.872 1.872 2.91 4.362 2.91 7.02 0 2.658-1.038 5.148-2.91 7.02-1.872 1.872-4.362 2.91-7.02 2.91-2.658 0-5.148-1.038-7.02-2.91-1.872-1.872-2.91-4.362-2.91-7.02 0-2.658 1.038-5.148 2.91-7.02 1.872-1.872 4.362-2.91 7.02-2.91zm-1.8 14.16c-.096.096-.192.192-.288.288l-.002.002c-1.14 1.14-2.736 1.74-4.596 1.74l-.002.002c-1.86 0-3.456-.6-4.596-1.74-.096-.096-.192-.192-.288-.288l-.002-.002c-1.14-1.14-1.74-2.736-1.74-4.596 0-1.86.6-3.456 1.74-4.596.096-.096.192-.192.288-.288l.002-.002c1.14-1.14 2.736-1.74 4.596-1.74 1.86 0 3.456.6 4.596 1.74.096.096.192.192.288.288l.002.002c1.14 1.14 1.74 2.736 1.74 4.596 0 1.86-.6 3.456-1.74 4.596z"/>
+        </svg>
+    </a>
+    -->
+
+    <!-- <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2"> -->
+    <div class="fixed top-0 w-full z-50 bg-white shadow-md px-4 sm:px-6 lg:px-8 py-2">
+    <!-- Navigation Bar -->
+<!--
+    <nav class="fixed top-0 w-full z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <div class="font-bold text-xl text-indigo-600">T&H Apartments</div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#features" class="hover:text-indigo-500">Facilities</a>
+                    <a href="#location" class="hover:text-indigo-500">Location</a>
+                    <a href="#contact" class="hover:text-indigo-500">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+-->
+
+    
+        <!-- <nav class="flex justify-between items-center py-4 border-b border-gray-200 mb-8"> -->
+        <nav class="flex justify-between items-center py-2">
+            <h1 class="text-xl font-bold text-emerald-600"><a href="#home">T & H Appartment</a></h1>
+            <div class="space-x-4">
+                <a href="#features" class="text-gray-600 hover:text-emerald-600 transition">Amenities</a>
+                <a href="#gallery" class="text-gray-600 hover:text-emerald-600 transition">Photos</a>
+                <a href="#location" class="text-gray-600 hover:text-emerald-600 transition">Location</a>
+                <a href="#inquiry" class="text-gray-600 hover:text-emerald-600 transition">Book Now</a>
+            </div>
+        </nav>
+    
+    </div>
+
+    <!-- Hero Section (Video/Parallax Effect) -->
+    <header id="home" class="parallax-bg flex items-center justify-center">
+        <div class="bg-black bg-opacity-40 p-10 rounded-xl text-center max-w-3xl mx-4">
+            <h1 class="text-5xl md:text-5xl font-bold text-white mb-4 tracking-tight">T & H Service Appartment</h1>
+            <p class="text-xl text-indigo-100 font-light mb-8">
+                Exclusive Private Oasis Getaway. Inquiry-based bookings only.
+            </p>
+            <a href="#inquiry" class="contact-button inline-block bg-indigo-600 text-white font-semibold py-3 px-8 rounded-full hover:bg-indigo-700 transition duration-300">
+                Inquire About Dates
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content & Features -->
+    <main class="container mx-auto px-4 py-16">        
+        <!-- Features Section -->
+
+        <section id="features" class="mb-20 text-center">
+            <h2 class="text-4xl font-bold mb-10 text-gray-900">Experience Elevated Living</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6m-6 0v-4m0 4h6m-6 0v-4" />
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Premium 4-Bedroom Duplex</h3>
+                    <p class="text-gray-600">A fully furnished architectural masterpiece featuring a spacious yard, dedicated dining area, and an additional BQ for maximum comfort.</p>
+                </div>
+
+                <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Uninterrupted Utilities</h3>
+                    <p class="text-gray-600">Enjoy 24-hour electricity, clean water, high-speed Wi-Fi, and DSTV, ensuring a seamless and restful stay in a very clean environment.</p>
+                </div>
+
+                <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Secure & Active Living</h3>
+                    <p class="text-gray-600">Located in Westend Estate with top-tier security, private parking, and on-site gym facilities for your health and peace of mind.</p>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        <section id="features" class="mb-20 text-center">
+            <h2 class="text-4xl font-bold mb-10 text-gray-900">Experience Elevated Living</h2>
+            <div class="grid md:grid-cols-3 gap-10">
+                <!-- Feature 1 
+                <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6m-6 0v-4m0 4h6m-6 0v-4" />
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Architectural Masterpiece</h3>
+                    <p class="text-gray-600">A custom-designed space that blends modern minimalism with coastal comfort. Sleeps 8 comfortably.</p>
+                </div>
+                <!-- Feature 2 
+                <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Unmatched Privacy</h3>
+                    <p class="text-gray-600">Completely secluded grounds with 24/7 security, ensuring your time away is truly undisturbed.</p>
+                </div>
+                <!-- Feature 3 
+                <div class="p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-indigo-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m-5 3h4M17 6H7a2 2 0 00-2 2v8a2 2 0 002 2h10a2 2 0 002-2V8a2 2 0 00-2-2z" />
+                    </svg>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-900">Dedicated Concierge</h3>
+                    <p class="text-gray-600">A personal concierge to arrange private chefs, excursions, and transportation during your stay.</p>
+                </div>
+            </div>
+        </section>
+    -->
+
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="mb-20">
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-900">Photo Gallery</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4"> 
+                <!-- Image 1 -->
+                <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-300" onclick="openLightbox('./src/photo/sitting-room-1.jpg')">
+                    <img src="./src/photo/sitting-room-1.jpg" alt="Lounge Area" class="w-full h-48 object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 2 -->
+                <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-300" onclick="openLightbox('./src/photo/home-inside-2.jpg')">
+                    <img src="./src/photo/dining.jpg" alt="Chef's Kitchen" class="w-full h-48 object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 3 -->
+                <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-300" onclick="openLightbox('./src/photo/home-inside-3.jpg')">
+                    <img src="./src/photo/sitting-room.jpg" alt="Master Suite" class="w-full h-48 object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 4 -->
+                <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-300" onclick="openLightbox('./src/photo/home-inside-4.jpg')">
+                    <img src="./src/photo/kitchen.jpg" alt="Villa Exterior" class="w-full h-48 object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 5 -->
+                <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-300" onclick="openLightbox('./src/photo/home-inside-4.jpg')">
+                    <img src="./src/photo/bedroom.jpg" alt="Villa Exterior" class="w-full h-48 object-cover transform hover:scale-105 transition duration-300">
+                </div>
+                <!-- Image 6 -->
+                <div class="gallery-item cursor-pointer overflow-hidden rounded-lg shadow-md hover:shadow-xl transition duration-300" onclick="openLightbox('./src/photo/home-inside-4.jpg')">
+                    <img src="./src/photo/bedroom1.jpg" alt="Villa Exterior" class="w-full h-48 object-cover transform hover:scale-105 transition duration-300">
+                </div>
+            </div>
+            <p class="text-center text-gray-500 mt-6 text-sm">Click any photo to enlarge and view in full detail.</p>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="mb-20">
+            <h2 class="text-4xl font-bold text-center mb-10 text-gray-900">Location & Surroundings</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Map Placeholder -->
+                <div class="bg-white rounded-xl shadow-xl overflow-hidden h-96">
+                    <!-- Google Maps Embed Placeholder (Replace with your actual iframe) -->
+                    <!-- Find your map iframe by searching for a location on Google Maps, clicking 'Share', and choosing 'Embed a map' -->
+                    
+                    <!-- <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.6269366675506!2d3.549977773974261!3d6.441927824107995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf708e99715f3%3A0xb00e3acad13a101e!2sWestend%20Estate!5e0!3m2!1sen!2sng!4v1766606954002!5m2!1sen!2sng" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.6269366675506!2d3.549977773974261!3d6.441927824107995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf708e99715f3%3A0xb00e3acad13a101e!2sWestend%20Estate!5e0!3m2!1sen!2sng!4v1766606954002!5m2!1sen!2sng" 
+                            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+                <!-- Location Details -->
+
+                <div class="p-6 bg-white rounded-xl shadow-xl">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">Premier Lekki Living</h3>
+                    <p class="text-gray-600 mb-6">
+                        The apartment is situated in the highly sought-after <strong>Westend Estate</strong>, a serene and secure residential hub. Located right by Lekki County Homes and the Ikota School Bus Stop, you enjoy the perfect balance of a quiet retreat with easy access to the heartbeat of Lekki.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+                            </svg> 
+                            Plot 42A, Westend Estate, Lekki
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 100-6 3 3 0 000 6z" />
+                            </svg> 
+                            By Lekki County Homes & Ikota School Bus Stop
+                        </li>
+                        <li class="flex items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M5 4a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V5a1 1 0 00-1-1H5zM10 7a3 3 0 110 6 3 3 0 010-6z" />
+                            </svg> 
+                            Easy access to Mega Chicken, VGC, and Chevron Toll
+                        </li>
+                    </ul>
+                </div>
+
+                <!--
+                <div class="p-6 bg-white rounded-xl shadow-xl">
+                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">A Secluded Paradise</h3>
+                    <p class="text-gray-600 mb-6">
+                        The villa is nestled in the exclusive "Oyster Bay" district, just a short 5-minute drive from the main beach club and 20 minutes from the international airport. The map marker points to the neighborhood center for privacy.
+                    </p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd" /></svg> 5 min drive to Ocean Beach Club</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 100-6 3 3 0 000 6z" /></svg> 1.5 km to Fine Dining Restaurant Row</li>
+                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor"><path d="M5 4a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V5a1 1 0 00-1-1H5zM10 7a3 3 0 110 6 3 3 0 010-6z" /></svg> Easy access to local markets and shops</li>
+                    </ul>
+                </div>
+            -->
+            </div>
+        </section>
+
+
+        <!-- Inquiry Form Section -->
+        <section id="inquiry" class="inquiry-bg rounded-xl shadow-inner relative">
+            <!-- dark overlay for readability -->
+            <div class="absolute inset-0 bg-indigo-900 bg-opacity-40 rounded-xl pointer-events-none"></div>
+            <div class="relative z-10">
+                <h2 class="text-4xl font-bold text-center mb-4 text-white">Request Your Dates</h2>
+                <p class="text-center text-indigo-100 mb-10 max-w-2xl mx-auto">
+                    Please provide your desired dates and we will personally check availability and send you a personalized quote.
+                </p>
+
+            <!-- <form id="inquiryForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeSQPTd3rGvdzc2XwVTFGQi8UIXgyt13XeAizjHFrHvQuB7HA/formResponse" method="POST" class="max-w-xl mx-auto p-8 bg-white rounded-xl shadow-2xl"> -->
+            <form id="inquiryForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSeSQPTd3rGvdzc2XwVTFGQi8UIXgyt13XeAizjHFrHvQuB7HA/formResponse" method="POST" target="hidden_iframe" class="max-w-xl mx-auto p-8 bg-white rounded-xl shadow-2xl">    
+                <!-- IMPORTANT: Replace 'YOUR_FORMSPREE_ENDPOINT_HERE' with your actual Formspree/Web3Forms URL -->
+                
+                <div class="mb-4">
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+                    <input type="text" id="name" name="entry.12728197" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                    <input type="email" id="email" name="entry.1040177544" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                </div>
+                <div class="grid grid-cols-2 gap-4 mb-4">
+                    <div>
+                        <label for="arrival" class="block text-sm font-medium text-gray-700 mb-1">Desired Arrival Date</label>
+                        <input type="date" id="arrival" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+
+                        <!-- 
+                            HIDDEN INPUTS FOR GOOGLE 
+                            Google expects year, month, and day separately for Date questions.
+                            Replace these entry IDs with the ones you found for year, month, and day.
+                        -->
+                        <input type="hidden" name="entry.1969731574_year" id="arrival_year">
+                        <input type="hidden" name="entry.1969731574_month" id="arrival_month">
+                        <input type="hidden" name="entry.1969731574_day" id="arrival_day">
+                    </div>
+                    <div>
+                        <label for="departure" class="block text-sm font-medium text-gray-700 mb-1">Desired Departure Date</label>
+                        <input type="date" id="departure" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+
+                        <!-- 
+                            HIDDEN INPUTS FOR GOOGLE 
+                            Google expects year, month, and day separately for Date questions.
+                            Replace these entry IDs with the ones you found for year, month, and day.
+                        -->
+                        <input type="hidden" name="entry.260504956_year" id="departure_year">
+                        <input type="hidden" name="entry.260504956_month" id="departure_month">
+                        <input type="hidden" name="entry.260504956_day" id="departure_day">
+                    </div>
+                </div>
+                <div class="mb-6">
+                    <label for="guests" class="block text-sm font-medium text-gray-700 mb-1">Number of Guests</label>
+                    <input type="number" id="guests" name="entry.787077016" min="1" max="12" required value="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 transition duration-150">
+                </div>
+
+                <!--<div id="form-message" class="mb-4 p-3 rounded-lg hidden"></div>-->
+                
+                <button id="submitBtn" type="submit" class="w-full contact-button bg-indigo-600 text-white font-semibold py-3 rounded-lg hover:bg-indigo-700 transition duration-300">
+                    Send Inquiry
+                </button>
+                <p class="text-center text-sm text-gray-500 mt-4">We will reply to your email within 24 hours.</p>
+            </form>
+
+            <!-- SUCCESS MESSAGE (Initially Hidden) -->
+            <div id="success-view" class="hidden text-center py-8">
+                <div class="bg-green-100 text-green-700 p-6 rounded-xl">
+                    <p class="text-xl font-bold mb-2">SUCCESS Inquiry Sent!</p>
+                    <p>Thank you! Your inquiry has been sent and we will reply within 24 hours.</p>
+                </div>
+            </div>
+
+            <!-- HIDDEN IFRAME -->
+            <!-- <iframe name="hidden_iframe" id="hidden_iframe"></iframe> -->
+            <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" src="about:blank"></iframe>
+        </section>
+
+    </main>
+
+    <!-- Lightbox Modal Structure
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[100] hidden transition-opacity duration-300" onclick="closeLightbox(event)">
+        <div class="max-w-6xl max-h-5xl p-4 relative" onclick="event.stopPropagation()">
+            <button class="absolute top-4 right-4 text-white text-3xl font-light opacity-80 hover:opacity-100 transition" onclick="closeLightbox()">
+                &times;
+            </button>
+            <img id="lightbox-image" src="" alt="Enlarged Property Photo" class="max-w-full max-h-screen rounded-lg shadow-2xl">
+        </div>
+    </div> -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-10 mt-10">
+        <div class="container mx-auto px-4 text-center">
+            <p class="text-lg font-semibold mb-2">T & H Service Appartment</p>
+            <p class="text-sm text-gray-400">Direct Inquiries Only. Property managed by T&H.</p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <!-- <a href="mailto:your.email@example.com" class="text-indigo-400 hover:text-indigo-300 transition duration-300">Email</a>-->
+                <a href="https://wa.me/08093245906" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition duration-300">WhatsApp</a>
+            </div>
+            <p class="text-xs text-gray-500 mt-6">&copy; 2025 T & H Service Appartment. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal Structure -->
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[100] hidden transition-opacity duration-300" onclick="closeLightbox(event)">
+        <div class="max-w-6xl max-h-5xl p-4 relative" onclick="event.stopPropagation()">
+            <!-- Close Button -->
+            <button class="absolute top-4 right-4 text-white text-3xl font-light opacity-80 hover:opacity-100 transition z-10" onclick="closeLightbox()">
+                &times;
+            </button>
+            
+            <!-- Left Arrow -->
+            <button class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-4xl opacity-70 hover:opacity-100 transition z-10 p-2" onclick="prevImage()" id="prevBtn">
+                &#10094;
+            </button>
+            
+            <!-- Image -->
+            <img id="lightbox-image" src="" alt="Enlarged Property Photo" class="max-w-full max-h-screen rounded-lg shadow-2xl">
+            
+            <!-- Right Arrow -->
+            <button class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-4xl opacity-70 hover:opacity-100 transition z-10 p-2" onclick="nextImage()" id="nextBtn">
+                &#10095;
+            </button>
+            
+            <!-- Image Counter -->
+            <div class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-white text-sm opacity-70">
+                <span id="imageCounter">1</span> / <span id="totalImages">4</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- Lightbox Logic ---
+        // function openLightbox(imageUrl) {
+        //    const lightbox = document.getElementById('lightbox');
+        //    const lightboxImage = document.getElementById('lightbox-image');
+            
+        //    lightboxImage.src = imageUrl;
+        //    lightbox.classList.remove('hidden');
+        //    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        //}
+
+        //function closeLightbox(event) {
+            // Only close if clicking the background or the close button (not the image itself)
+        //    if (event && event.target.id !== 'lightbox') {
+        //        return;
+        //    }
+
+        //    const lightbox = document.getElementById('lightbox');
+        //    lightbox.classList.add('hidden');
+        //    document.body.style.overflow = ''; // Restore scrolling
+        //}
+
+        // --- Lightbox Gallery Management ---
+        let currentImageIndex = 0;
+        const galleryImages = [
+            './src/photo/sitting-room-1.jpg',
+            './src/photo/dining.jpg',
+            './src/photo/sitting-room.jpg',
+            './src/photo/kitchen.jpg',
+            './src/photo/bedroom.jpg',
+            './src/photo/bedroom1.jpg'
+        ];
+
+        function openLightbox(imageUrl) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImage = document.getElementById('lightbox-image');
+            
+            // Find the index of the clicked image
+            currentImageIndex = galleryImages.indexOf(imageUrl);
+            
+            lightboxImage.src = imageUrl;
+            lightbox.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            updateNavigationButtons();
+        }
+
+        function closeLightbox(event) {
+            if (event && event.target.id !== 'lightbox') {
+                return;
+            }
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() {
+            if (currentImageIndex < galleryImages.length - 1) {
+                currentImageIndex++;
+                updateLightbox();
+            }
+        }
+
+        function prevImage() {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                updateLightbox();
+            }
+        }
+
+        function updateLightbox() {
+            const lightboxImage = document.getElementById('lightbox-image');
+            lightboxImage.src = galleryImages[currentImageIndex];
+            updateNavigationButtons();
+        }
+
+        function updateNavigationButtons() {
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const imageCounter = document.getElementById('imageCounter');
+            
+            imageCounter.textContent = currentImageIndex + 1;
+            
+            // Disable/enable buttons based on position
+            prevBtn.disabled = currentImageIndex === 0;
+            nextBtn.disabled = currentImageIndex === galleryImages.length - 1;
+            
+            prevBtn.style.opacity = currentImageIndex === 0 ? '0.3' : '0.7';
+            nextBtn.style.opacity = currentImageIndex === galleryImages.length - 1 ? '0.3' : '0.7';
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('hidden')) return;
+            
+            if (event.key === 'ArrowRight') nextImage();
+            if (event.key === 'ArrowLeft') prevImage();
+            if (event.key === 'Escape') closeLightbox();
+        });
+
+
+
+        // --- Inquiry Form Submission Logic (Client-Side) ---
+        window.submitted = false;
+
+        function splitDate(val, type) {
+            if (!val) return;
+            const parts = val.split('-'); // Format from input[type="date"] is always YYYY-MM-DD
+            if (parts.length === 3) {
+                document.getElementById(`${type}_year`).value = parts[0];
+                document.getElementById(`${type}_month`).value = parts[1];
+                document.getElementById(`${type}_day`).value = parts[2];
+            }
+        }
+
+        function handleIframeLoad() {
+            if (window.submitted) {
+                document.getElementById('inquiryForm').classList.add('hidden');
+                document.getElementById('success-view').classList.remove('hidden');
+                // window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('inquiryForm');
+            const arrival = document.getElementById('arrival');
+            const departure = document.getElementById('departure');
+            const iframe = document.getElementById('hidden_iframe');
+
+            // 1. Monitor Date Changes
+            arrival.addEventListener('change', (e) => splitDate(e.target.value, 'arrival'));
+            departure.addEventListener('change', (e) => splitDate(e.target.value, 'departure'));
+
+            // 2. Handle Submit
+            form.addEventListener('submit', function(e) {
+                // Final check to ensure dates are split before POST
+                splitDate(arrival.value, 'arrival');
+                splitDate(departure.value, 'departure');
+
+                const btn = document.getElementById('submitBtn');
+                btn.disabled = true;
+                btn.textContent = 'Sending...';
+                window.submitted = true;
+            });
+
+            // 3. Monitor Iframe
+            if (iframe) {
+                iframe.onload = handleIframeLoad;
+            }
+        });
+        
+        
+        /*
+        // --- Inquiry Form Submission Logic (Client-Side) ---
+        document.getElementById('inquiryForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            const form = event.target;
+            const formMessage = document.getElementById('form-message');
+            const submitButton = form.querySelector('button[type="submit"]');
+            
+            // Temporary check for the placeholder URL
+            if (form.action.includes('YOUR_FORMSPREE_ENDPOINT_HERE')) {
+                formMessage.textContent = 'SUCCESS: Your inquiry simulation was successful! Please replace the form ACTION URL with your actual Formspree/Web3Forms endpoint to receive emails.';
+                formMessage.className = 'mb-4 p-3 bg-green-100 text-green-700 rounded-lg';
+                formMessage.classList.remove('hidden');
+                form.reset();
+                return;
+            }
+
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    headers: {
+                        // Formspree/Web3Forms often requires 'Accept': 'application/json' for AJAX
+                        'Accept': 'application/json' 
+                    }
+                });
+
+                if (response.ok) {
+                    formMessage.textContent = 'SUCCESS: Thank you! Your inquiry has been sent and we will reply within 24 hours.';
+                    formMessage.className = 'mb-4 p-3 bg-green-100 text-green-700 rounded-lg';
+                    form.reset();
+                } else {
+                    // Handle API-specific errors
+                    let errorMessage = 'ERROR: There was a problem sending your inquiry. Please check the Formspree URL.';
+                    try {
+                        const data = await response.json();
+                        if (data.errors) {
+                            errorMessage += ' Details: ' + data.errors.map(e => e.field + ' ' + e.message).join(', ');
+                        }
+                    } catch (e)  // ignore JSON parsing error 
+
+                    formMessage.textContent = errorMessage;
+                    formMessage.className = 'mb-4 p-3 bg-red-100 text-red-700 rounded-lg';
+                }
+            } catch (error) {
+                formMessage.textContent = 'FATAL ERROR: Network connection failed. Please try again.';
+                formMessage.className = 'mb-4 p-3 bg-red-100 text-red-700 rounded-lg';
+            } finally {
+                formMessage.classList.remove('hidden');
+                submitButton.textContent = 'Send Inquiry';
+                submitButton.disabled = false;
+                // Scroll to the message for visibility
+                formMessage.scrollIntoView({ behavior: 'smooth' });
+            }
+        }); */
+    </script>
+
+</body>
+</html>
