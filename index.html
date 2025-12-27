@@ -242,20 +242,6 @@
                         </li>
                     </ul>
                 </div>
-
-                <!--
-                <div class="p-6 bg-white rounded-xl shadow-xl">
-                    <h3 class="text-2xl font-semibold mb-4 text-gray-900">A Secluded Paradise</h3>
-                    <p class="text-gray-600 mb-6">
-                        The villa is nestled in the exclusive "Oyster Bay" district, just a short 5-minute drive from the main beach club and 20 minutes from the international airport. The map marker points to the neighborhood center for privacy.
-                    </p>
-                    <ul class="space-y-3 text-gray-700">
-                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l3 3a1 1 0 001.414-1.414L11 9.586V6z" clip-rule="evenodd" /></svg> 5 min drive to Ocean Beach Club</li>
-                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 100-6 3 3 0 000 6z" /></svg> 1.5 km to Fine Dining Restaurant Row</li>
-                        <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor"><path d="M5 4a1 1 0 00-1 1v10a1 1 0 001 1h10a1 1 0 001-1V5a1 1 0 00-1-1H5zM10 7a3 3 0 110 6 3 3 0 010-6z" /></svg> Easy access to local markets and shops</li>
-                    </ul>
-                </div>
-            -->
             </div>
         </section>
 
@@ -338,16 +324,6 @@
 
     </main>
 
-    <!-- Lightbox Modal Structure
-    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[100] hidden transition-opacity duration-300" onclick="closeLightbox(event)">
-        <div class="max-w-6xl max-h-5xl p-4 relative" onclick="event.stopPropagation()">
-            <button class="absolute top-4 right-4 text-white text-3xl font-light opacity-80 hover:opacity-100 transition" onclick="closeLightbox()">
-                &times;
-            </button>
-            <img id="lightbox-image" src="" alt="Enlarged Property Photo" class="max-w-full max-h-screen rounded-lg shadow-2xl">
-        </div>
-    </div> -->
-
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-10 mt-10">
         <div class="container mx-auto px-4 text-center">
@@ -390,27 +366,6 @@
     </div>
 
     <script>
-        // --- Lightbox Logic ---
-        // function openLightbox(imageUrl) {
-        //    const lightbox = document.getElementById('lightbox');
-        //    const lightboxImage = document.getElementById('lightbox-image');
-            
-        //    lightboxImage.src = imageUrl;
-        //    lightbox.classList.remove('hidden');
-        //    document.body.style.overflow = 'hidden'; // Prevent background scrolling
-        //}
-
-        //function closeLightbox(event) {
-            // Only close if clicking the background or the close button (not the image itself)
-        //    if (event && event.target.id !== 'lightbox') {
-        //        return;
-        //    }
-
-        //    const lightbox = document.getElementById('lightbox');
-        //    lightbox.classList.add('hidden');
-        //    document.body.style.overflow = ''; // Restore scrolling
-        //}
-
         // --- Lightbox Gallery Management ---
         let currentImageIndex = 0;
         const galleryImages = [
@@ -538,68 +493,8 @@
             if (iframe) {
                 iframe.onload = handleIframeLoad;
             }
-        });
+        });  
         
-        
-        /*
-        // --- Inquiry Form Submission Logic (Client-Side) ---
-        document.getElementById('inquiryForm').addEventListener('submit', async function(event) {
-            event.preventDefault();
-            
-            const form = event.target;
-            const formMessage = document.getElementById('form-message');
-            const submitButton = form.querySelector('button[type="submit"]');
-            
-            // Temporary check for the placeholder URL
-            if (form.action.includes('YOUR_FORMSPREE_ENDPOINT_HERE')) {
-                formMessage.textContent = 'SUCCESS: Your inquiry simulation was successful! Please replace the form ACTION URL with your actual Formspree/Web3Forms endpoint to receive emails.';
-                formMessage.className = 'mb-4 p-3 bg-green-100 text-green-700 rounded-lg';
-                formMessage.classList.remove('hidden');
-                form.reset();
-                return;
-            }
-
-            submitButton.textContent = 'Sending...';
-            submitButton.disabled = true;
-
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: {
-                        // Formspree/Web3Forms often requires 'Accept': 'application/json' for AJAX
-                        'Accept': 'application/json' 
-                    }
-                });
-
-                if (response.ok) {
-                    formMessage.textContent = 'SUCCESS: Thank you! Your inquiry has been sent and we will reply within 24 hours.';
-                    formMessage.className = 'mb-4 p-3 bg-green-100 text-green-700 rounded-lg';
-                    form.reset();
-                } else {
-                    // Handle API-specific errors
-                    let errorMessage = 'ERROR: There was a problem sending your inquiry. Please check the Formspree URL.';
-                    try {
-                        const data = await response.json();
-                        if (data.errors) {
-                            errorMessage += ' Details: ' + data.errors.map(e => e.field + ' ' + e.message).join(', ');
-                        }
-                    } catch (e)  // ignore JSON parsing error 
-
-                    formMessage.textContent = errorMessage;
-                    formMessage.className = 'mb-4 p-3 bg-red-100 text-red-700 rounded-lg';
-                }
-            } catch (error) {
-                formMessage.textContent = 'FATAL ERROR: Network connection failed. Please try again.';
-                formMessage.className = 'mb-4 p-3 bg-red-100 text-red-700 rounded-lg';
-            } finally {
-                formMessage.classList.remove('hidden');
-                submitButton.textContent = 'Send Inquiry';
-                submitButton.disabled = false;
-                // Scroll to the message for visibility
-                formMessage.scrollIntoView({ behavior: 'smooth' });
-            }
-        }); */
     </script>
 
 </body>
